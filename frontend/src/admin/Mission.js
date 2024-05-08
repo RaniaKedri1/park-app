@@ -37,13 +37,12 @@ const Mission = () => {
             const response = await axios.get('http://localhost:5000/api/mission');
             // Update the state with the new data
             setmissions(response.data);
-            toast.success('Blog deleted successfully');
             // Scroll to the list to bring it into view
             // inputRef.current.scrollIntoView({ behavior: 'smooth' });
-            // setDeleteMessage('Mission Deleted Successfully!');
-            // setTimeout(() => {
-            //     setDeleteMessage('');
-            // }, 3000);
+            setDeleteMessage('Mission Deleted Successfully!');
+            setTimeout(() => {
+                setDeleteMessage('');
+            }, 3000);
         } catch (error) {
             console.error('Error deleting data:', error);
             // toast.error('Error deleting blog');
@@ -57,6 +56,7 @@ const Mission = () => {
         <div className="app-container">
             <SideBar />
             <div className="app-content">
+                {deleteMessage && <div className="alert alert-info">{deleteMessage}</div>}
                 <div className="app-content-header">
                     {/* App header content */}
                     <h1 className="app-content-headerText" style={{ color: "#222" }}>Allouer</h1>
@@ -102,9 +102,9 @@ const Mission = () => {
                                                 alt='image vehicle' />
                                         </td>
                                         <td style={{ padding: "8px 16px", margin: "4px" }}>
-                                            <Link className="btn btn-primary mr-2" style={{ margin: "4px" }} to={`/mission/update/${mission.id}`} >Modifier</Link>
+                                            {/* <Link className="btn btn-primary mr-2" style={{ margin: "4px" }} to={`/mission/update/${mission.id}`} >Modifier</Link> */}
+                                            <Link className="btn btn-primary mr-2" style={{ margin: "4px" }} to={`/admin/mission/${mission._id}`} >Voir</Link>
                                             <button className="btn btn-danger" onClick={() => handleDelete(mission._id)}>Supprimer</button>
-
                                         </td>
                                     </tr>
                                 ))}

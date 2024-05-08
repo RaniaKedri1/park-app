@@ -15,6 +15,7 @@ import Vehicle from './pages/Vehicle';
 import Mission from './admin/Mission';
 import CreateM from './admin/createMission';
 import UpdateMission from './admin/UpdateMission';
+import MissionDetails from './admin/MissionDetails';
 
 function App() {
 
@@ -30,6 +31,8 @@ function App() {
           <Route path='/createVehicle' element={<CreateV />} />
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/admin/Mission' element={<Mission />} />
+          <Route path='/admin/mission/:id' element={<MissionDetails />} />
+          {/* <Route path='/Mission/:id' element={<Mission />} /> */}
           <Route path='/createMission' element={<CreateM/>} />
           <Route path='/mission/update/:id' element={<UpdateMission />} />
 

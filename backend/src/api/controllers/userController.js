@@ -107,6 +107,18 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+
+const getUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findById(id)
+        res.json(user)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: `something went wrong` })
+    }
+}
+
 // @desc    Delete single user by id
 // @route   DELETE /api/user/:id
 // @access  Private/Admin
@@ -121,4 +133,4 @@ const deleteUser = async (req, res) => {
 }
 
 
-module.exports = { register, login, getAllUsers, deleteUser }
+module.exports = { register, login, getAllUsers, deleteUser, getUser }
