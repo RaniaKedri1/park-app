@@ -27,7 +27,7 @@ const register = async (req, res) => {
             dateArrive,
             is_verified,
             image,
-        });
+        });  
 
         const savedMission = await newMission.save();
 

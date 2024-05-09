@@ -44,127 +44,134 @@ const Register = () => {
     }, []);
 
     return (
-        <div className="container mt-5">
-            <h2>Register</h2>
-            {error && <p className="text-danger">{error}</p>}
-            <Form onSubmit={handleSubmit}>
-                <FormGroup >
-                    <label htmlFor="email">firstname</label> {/* Use regular label element */}
-                    <input
-                        type="teyt"
-                        name="firstname"
-                        id="firstname"
-                        className="form-control"
-                        placeholder="Enter your firstname"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="password">lastName</label> {/* Use regular label element */}
-                    <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        className="form-control"
-                        placeholder="Enter your lastName"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="password">email</label> {/* Use regular label element */}
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        className="form-control"
-                        placeholder="Enter your email"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="password">password</label> {/* Use regular label element */}
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        className="form-control"
-                        placeholder="Enter your password"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="password">confirm password</label> {/* Use regular label element */}
-                    <input
-                        type="password"
-                        name="repeatPassword"
-                        id="repeatPassword"
-                        className="form-control"
-                        placeholder="Enter your confirm password"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="password">address</label> {/* Use regular label element */}
-                    <input
-                        type="text"
-                        name="address"
-                        id="address"
-                        className="form-control"
-                        placeholder="Enter your address"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="Tel">Tel</label> {/* Use regular label element */}
-                    <input
-                        type="Text"
-                        name="Tel"
-                        id="Tel"
-                        className="form-control"
-                        placeholder="Enter your Tel"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="pays">pays</label> {/* Use regular label element */}
-                    <input
-                        type="text"
-                        name="pays"
-                        id="pays"
-                        className="form-control"
-                        placeholder="Enter your pays"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="city">city</label> {/* Use regular label element */}
-                    <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        className="form-control"
-                        placeholder="Enter your city"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="password">postalCode</label> {/* Use regular label element */}
-                    <input
-                        type="text"
-                        name="postalCode"
-                        id="postalCode"
-                        className="form-control"
-                        placeholder="Enter your postalCode"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+        <section className="h-100 h-custom gradient-custom-2" style={{ paddingBottom: '240px', width: '100%', maxHeight: '1024px', overflowY: 'auto' }}>           <div className="container py-5 h-100" >
+            <div className="row d-flex justify-content-center align-items-center h-100">
+                <div className="col-12 mb-5">
+                    <div className="card card-registration card-registration-2" style={{ borderRadius: "15px" }}>
+                        <div className="card-body p-0">
+                            <div className="row g-0">
+                                <div className="col-lg-6">
+                                    <div className="p-5">
+                                        <h3 className="fw-normal mb-5" style={{ color: "#4835d4" }}>General Infomation</h3>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4 pb-2">
+                                                <div data-mdb-input-init className="form-outline">
+                                                    <input type="text" id="firstname"
+                                                        onChange={handleChange}
+                                                        name="firstname" className="form-control form-control-lg" />
+                                                    <label className="form-label" name="firstname" htmlFor="firstname">First name</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4 pb-2">
+                                                <div data-mdb-input-init className="form-outline">
+                                                    <input
+                                                        type="text"
+                                                        name="lastName"
+                                                        id="lastName"
+                                                        className="form-control form-control-lg"
+                                                        onChange={handleChange}
+                                                    />
 
-                <Button variant="primary" type="submit">Submit</Button> {/* Use variant instead of color */}
-            </Form>
-            <div className="mt-3">
-                <p>Don't have an account? <a href="/register">Sign up here</a>.</p>
+                                                    <label className="form-label" htmlFor="lastname">Last name</label>
+                                                </div>
+                                            </div>
+                                            <div className="mb-4 pb-2">
+                                                <div data-mdb-input-init className="form-outline form-white">
+                                                    <input type="email" id="form3Examplea2"
+                                                        onChange={handleChange}
+                                                        name="email" className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="form3Examplea2">Email</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4 pb-2">
+                                                <div data-mdb-input-init className="form-outline">
+                                                    <input type="password" id="lastName"
+                                                        onChange={handleChange}
+                                                        name="password" className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="lastname">Password</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4 pb-2">
+                                                <div data-mdb-input-init className="form-outline">
+                                                    <input type="password" id="lastName"
+                                                        onChange={handleChange}
+                                                        name="repeatPassword" className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="lastname">Confirm Password</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Add other input fields similarly */}
+
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 bg-indigo text-white">
+                                    <div className="p-5">
+                                        <h3 className="fw-normal mb-5">Contact Details</h3>
+
+                                        {/* Replace React form input fields with the ones from the template */}
+                                        <div className="mb-4 pb-2">
+                                            <div data-mdb-input-init className="form-outline form-white">
+                                                <input type="text" id="form3Examplea2"
+                                                    onChange={handleChange}
+                                                    name="address" className="form-control form-control-lg" />
+                                                <label className="form-label" htmlFor="form3Examplea2">Street + Nr</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-md-5 mb-4 pb-2">
+
+                                                <div data-mdb-input-init className="form-outline form-white">
+                                                    <input type="text" id="form3Examplea4"
+                                                        onChange={handleChange}
+                                                        name="Tel" className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="form3Examplea4">Phone</label>
+                                                </div>
+
+                                            </div>
+                                            <div className="col-md-7 mb-4 pb-2">
+
+                                                <div data-mdb-input-init className="form-outline form-white">
+                                                    <input type="text" id="form3Examplea5"
+                                                        onChange={handleChange}
+                                                        name="pays" className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="form3Examplea5">Pays</label>
+                                                </div>
+
+                                            </div>
+
+                                            <div className="col-md-5 mb-4 pb-2">
+
+                                                <div data-mdb-input-init className="form-outline form-white">
+                                                    <input type="text" id="form3Examplea4"
+                                                        onChange={handleChange}
+                                                        name='city' className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="form3Examplea4">City</label>
+                                                </div>
+
+                                            </div>
+                                            <div className="col-md-7 mb-4 pb-2">
+
+                                                <div data-mdb-input-init className="form-outline form-white">
+                                                    <input type="text" id="form3Examplea5"
+                                                        onChange={handleChange}
+                                                        name='postalCode' className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="form3Examplea5">Zip Code</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <Button onClick={handleSubmit} variant="light" size="lg">Register</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        </section>
     );
 };
 

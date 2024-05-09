@@ -4,11 +4,13 @@
 module.exports = mongoose => {
     const VehicleSchema = new mongoose.Schema({
         make: { type: String, required: true },
+        prix: { type: String, required: true },
         model: { type: String, required: true },
         year: { type: Number, required: true },
         mileage: { type: Number, default: 0 },
         fuelType: { type: String },
         color: { type: String },
+        image: { type: String },
         vin: { type: String, required: true, unique: true },
         registrationNumber: { type: String, required: true, unique: true },
         status: { type: String, enum: ['available', 'in-use', 'maintenance'], default: 'available' },

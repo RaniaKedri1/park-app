@@ -2,8 +2,19 @@ const express = require('express');
 const router = express.Router();
 const vc = require('../controllers/VehicleController')
 
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: './uploads-vehicle/',
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+const upload = multer({ storage })
+
 // Route to create a new vehicle
-router.post('/create', vc.createdVehicle);
+router.post('/create', upload.single('file'), vc.createdVehicle);
 // Route to get all vehicles
 router.get('/', vc.listervehicles);
 // Route to get a vehicle by ID

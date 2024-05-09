@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.
     post('/register', register)
-    .post('/login', login)
+    .post('/login', login) 
     .get('/', getAllUsers)
     .get('/:id', getUser)
     .delete('/:id', deleteUser)

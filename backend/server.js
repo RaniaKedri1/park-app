@@ -1,8 +1,8 @@
 const express = require('express');
 const database = require('./src/database/db.config');
 const path = require('path')
-const cors = require ('cors')
-require('dotenv').config(); 
+const cors = require('cors')
+require('dotenv').config();
 const app = express();
 
 // Middlewares
@@ -17,16 +17,17 @@ app.use('/api/vehicle', vehicleRoute)
 app.use('/api/user', userRoute)
 app.use('/api/mission', require('./src/api/routes/missionRoute'))
 
-database.mongoose.connect(database.url, {
+database.mongoose.connect(database.url, {   
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true 
 }).then(() => {
     console.log('Connected to database');
 }).catch(err => {
-    console.log(err);
+    console.log(err); 
 });
 
 app.use('/uploads', express.static(path.join(__dirname, './', 'uploads-identity')))
+app.use('/uploads', express.static(path.join(__dirname, './', 'uploads-vehicle')))
 
 
 const PORT = process.env.PORT || 3000;

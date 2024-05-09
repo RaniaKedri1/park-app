@@ -23,7 +23,7 @@ const CreateM = () => {
     e.preventDefault();
 
     try {
-      await axios.post(`http://localhost:5000/api/mission/register/${voitureId}`, newM);
+      // await axios.post(`http://localhost:5000/api/mission/register/${voitureId}`, newM);
       navigate('/admin/Mission');
 
     } catch (error) {

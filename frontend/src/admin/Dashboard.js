@@ -2,52 +2,26 @@ import React, { useEffect, useState } from 'react';
 import "../App.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import UpdateVehicle from './UpdateVehicle';
+// import UpdateVehicle from './UpdateVehicle';
 import SideBar from '../component/SideBar';
 
+
 function Dashboard() {
-    const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
     const [isGridView, setIsGridView] = useState(true);
     const [vehicles, setVehicles] = useState([]);
-
-    const [showModal, setShowModal] = useState(false);
-
-    const handleShowModal = () => {
-        setShowModal(true);
-    };
-
     const navigate = useNavigate();
-
-    const toggleFilterMenu = () => {
-        setIsFilterMenuOpen(!isFilterMenuOpen);
-    };
-
-    const switchToGridView = () => {
-        setIsGridView(true);
-    };
-
-    const switchToListView = () => {
-        setIsGridView(false);
-    };
-
-    const toggleTheme = () => {
-        document.documentElement.className.toggle('light'); // This could be handled using React state for a more idiomatic approach
-    };
 
     useEffect(() => {
         const FetchDataVehicle = async () => {
             try {
-
                 const response = await axios.get('http://localhost:5000/api/vehicle')
                 setVehicles(response.data)
-                console.log("Vehicle : ============>", response.data);
-
+                // console.log("Vehicle : ==>", response.data);
             } catch (error) {
                 console.log("error :", error);
             }
         };
         FetchDataVehicle()
-
     }, [])
 
     const handleDelete = async (id) => {

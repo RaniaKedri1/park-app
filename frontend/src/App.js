@@ -16,6 +16,8 @@ import Mission from './admin/Mission';
 import CreateM from './admin/createMission';
 import UpdateMission from './admin/UpdateMission';
 import MissionDetails from './admin/MissionDetails';
+import RegisterMission from './pages/RegisterMission';
+import MissionUser from './pages/MissionUser';
 
 function App() {
 
@@ -33,7 +35,7 @@ function App() {
           <Route path='/admin/Mission' element={<Mission />} />
           <Route path='/admin/mission/:id' element={<MissionDetails />} />
           {/* <Route path='/Mission/:id' element={<Mission />} /> */}
-          <Route path='/createMission' element={<CreateM/>} />
+          <Route path='/createMission' element={<CreateM />} />
           <Route path='/mission/update/:id' element={<UpdateMission />} />
 
           <Route path='/user/userTable' element={<Users />} />
@@ -41,8 +43,9 @@ function App() {
           <Route path='/vehicle/update/:id' element={<UpdateVehicle />} />
           <Route element={<SideBar />} />
           <Route path='/vehicle' element={<Vehicle />} />
-
-
+          <Route path='/mission/:id' element={<RegisterMission />} />
+          <Route path='/mission/' element={<MissionUser />} />
+          
         </Routes>
       </BrowserRouter>
 
