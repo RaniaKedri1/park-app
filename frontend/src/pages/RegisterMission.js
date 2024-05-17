@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const RegisterMission = () => {
 
     const [mission, setMission] = useState({})
     const { id } = useParams()
     const [file, setFile] = useState({});
-
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setMission({
@@ -35,6 +35,7 @@ const RegisterMission = () => {
 
             const response = await axios.post(`http://localhost:5000/api/mission/register/${id}`, formData);
             console.log("Missions : ============>", response.data);
+            navigate('/mission')
 
         } catch (error) {
             console.log("error :", error);

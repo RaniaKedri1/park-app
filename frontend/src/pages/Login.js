@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, FormGroup } from 'react-bootstrap'; // Remove Label import
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [info, setInfo] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     setInfo({
@@ -20,11 +21,15 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/user/login', info);
-      localStorage.setItem('token', response.data.result.token);// Enregistrer token dans le stockage local
       localStorage.setItem('isAuth', true) // Enregistrer isAuth dans le stockage local
-      localStorage.setItem('id', response.data.result.userId) // Enregistrer isAuth dans le stockage local
+      localStorage.setItem('token', response.data.result.token);// Enregistrer token dans le stockage local
+      localStorage.setItem('role', response.data.result.role) // Enregistrer isAuth dans le stockage local
+      localStorage.setItem('id', response.data.result.userId) // Enregistrer role dans le stockage local
       // Handle successful login response here, e.g., redirect to dashboard
-      if (response) {
+      if (response.data.result.role == 'admin') {
+        navigate('/admin/dashboard');
+      }
+      else {
         navigate('/home')
       }
       console.log('Login successful:', response.data);
@@ -36,14 +41,22 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const isAuth = localStorage.getItem('isAuth') || 'false'; // Assurez-vous de récupérer une chaîne de caractères
-    if (isAuth === 'true') {
-      navigate('/home');
+    const isAuth = localStorage.getItem('isAuth') === 'true';
+    const role = localStorage.getItem('role');
+
+    if (isAuth) {
+      if (role === 'admin') {
+        setTimeout(() => {
+          navigate('/admin/dashboard');
+        }, 2000);
+      } else {
+        navigate('/home');
+      }
     }
-  }, []);
+  }, [navigate, location]);
 
   return (
-    <section className="h-100 gradient-form" style={{ backgroundColor: "#eee" }}>
+    <section className="h-100 gradient-form" style={{ backgroundColor: "#a1c4fd" }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-xl-10">
@@ -58,7 +71,6 @@ const Login = () => {
                     </div>
 
                     <Form onSubmit={handleSubmit}>
-
                       <FormGroup>
                         <label htmlFor="form2Example11">Email</label>
                         <input

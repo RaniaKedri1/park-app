@@ -27,7 +27,7 @@ const register = async (req, res) => {
             dateArrive,
             is_verified,
             image,
-        });  
+        });
 
         const savedMission = await newMission.save();
 
@@ -53,6 +53,19 @@ const GetMissions = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({ msg: `something went wrong` })
+    }
+}
+
+const getMissionByUser = async (req, res) => {
+    try {
+        const user = req.params.id;
+        const mission = await Mission.find({ user })
+        if (!mission) {
+            return res.status(404).json({ msg: 'Mission not found for this user' });
+        }
+        res.json(mission);
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong' });
     }
 }
 
@@ -102,4 +115,4 @@ const deleteMission = async (req, res) => {
     }
 }
 
-module.exports = { register, UpdateMission, GetMissions, getMissionById, deleteMission }
+module.exports = { register, UpdateMission, GetMissions, getMissionByUser, getMissionById, deleteMission }

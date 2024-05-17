@@ -20,7 +20,8 @@ import RegisterMission from './pages/RegisterMission';
 import MissionUser from './pages/MissionUser';
 
 function App() {
-
+  const isAuth = localStorage.getItem('isAuth');
+  const role = localStorage.getItem('role');
   return (
     <div className="App">
       <BrowserRouter>
@@ -30,22 +31,25 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/createVehicle' element={<CreateV />} />
-          <Route path='/admin/dashboard' element={<Dashboard />} />
-          <Route path='/admin/Mission' element={<Mission />} />
           <Route path='/admin/mission/:id' element={<MissionDetails />} />
-          {/* <Route path='/Mission/:id' element={<Mission />} /> */}
-          <Route path='/createMission' element={<CreateM />} />
-          <Route path='/mission/update/:id' element={<UpdateMission />} />
-
-          <Route path='/user/userTable' element={<Users />} />
-          <Route path='/createUser' element={<CreateU />} />
-          <Route path='/vehicle/update/:id' element={<UpdateVehicle />} />
-          <Route element={<SideBar />} />
           <Route path='/vehicle' element={<Vehicle />} />
           <Route path='/mission/:id' element={<RegisterMission />} />
-          <Route path='/mission/' element={<MissionUser />} />
-          
+          <Route path='/mission' element={<MissionUser />} />
+
+          {isAuth && role === 'admin' && (
+            <>
+              <Route element={<SideBar />} />
+              <Route path='/admin/dashboard' element={<Dashboard />} />
+              <Route path='/createVehicle' element={<CreateV />} />
+              <Route path='/vehicle/update/:id' element={<UpdateVehicle />} />
+              <Route path='/admin/Mission' element={<Mission />} />
+              <Route path='/mission/update/:id' element={<UpdateMission />} />
+              {/* <Route path='/Mission/:id' element={<Mission />} /> */}
+              {/* <Route path='/createMission' element={<CreateM />} /> */}
+              <Route path='/user/userTable' element={<Users />} />
+              <Route path='/createUser' element={<CreateU />} />
+            </>)}
+
         </Routes>
       </BrowserRouter>
 

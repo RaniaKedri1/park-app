@@ -11,7 +11,8 @@ const MissionUser = () => {
     useEffect(() => {
         const FetchDataMission = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/mission')
+                const id = localStorage.getItem('id');
+                const response = await axios.get(`http://localhost:5000/api/mission/missionByUser/${id}`);
                 setmissions(response.data)
                 // console.log("Missions : ============>", response.data);
             } catch (error) {
@@ -19,7 +20,6 @@ const MissionUser = () => {
             }
         };
         FetchDataMission()
-
     }, [])
 
     const handleDelete = async (id) => {
@@ -31,7 +31,7 @@ const MissionUser = () => {
             // Send DELETE request
             await axios.delete(`http://localhost:5000/api/mission/${id}`);
             // Fetch updated data after deletion
-            const response = await axios.get('http://localhost:5000/api/mission');
+            const response = await axios.get(`http://localhost:5000/api/mission/missionByUser/${id}`);
             // Update the state with the new data
             setmissions(response.data);
             // Scroll to the list to bring it into view

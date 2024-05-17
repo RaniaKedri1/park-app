@@ -23,6 +23,7 @@ const Vehicle = () => {
 
     return (
         <section style={{ backgroundColor: '#eee', minHeight: '100vh' }}>
+
             <div className="container py-5">
                 <div className="row justify-content-center mb-3">
                     <div className="col-md-12 col-xl-10">
@@ -82,6 +83,7 @@ const Vehicle = () => {
                     </div>
                 </div>
             </div>
+
         </section>
     );
 };

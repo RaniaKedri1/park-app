@@ -16,6 +16,8 @@ function NavbarExemple() {
         // Supprimer token, isAuth du stockage local
         localStorage.removeItem('token');
         localStorage.removeItem('isAuth');
+        localStorage.removeItem('id');
+        localStorage.removeItem('role');
         // Rediriger vers la page de connexion
         navigate('/login');
     };
