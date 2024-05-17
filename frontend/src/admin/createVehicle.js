@@ -7,6 +7,7 @@ import SideBar from '../component/SideBar';
 const CreateV = () => {
   const navigate = useNavigate();
   const [newV, setNewV] = useState({});
+  const [file, setFile] = useState({});
 
   const handleChange = (e) => {
     setNewV({
@@ -19,12 +20,25 @@ const CreateV = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/vehicle/create', newV);
+      const formData = new FormData();
+      formData.append('make', newV.make);
+      formData.append('model', newV.model);
+      formData.append('prix', newV.prix);
+      formData.append('year', newV.year);
+      formData.append('mileage', newV.mileage);
+      formData.append('fuelType', newV.fuelType);
+      formData.append('color', newV.color);
+      formData.append('vin', newV.vin);
+      formData.append('registrationNumber', newV.registrationNumber);
+      formData.append('file', file);
+
+      await axios.post('http://localhost:5000/api/vehicle/create', formData);
       navigate('/admin/Dashboard');
     } catch (error) {
       console.error('Error creating vehicle:', error);
     }
   };
+
   return (
     <div className="app-container">
       <SideBar />
@@ -38,6 +52,10 @@ const CreateV = () => {
           <div className="form-group" style={{ margin: "20px" }}>
             <label>Modèle:</label>
             <input type="text" className="form-control" name="model" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Prix:</label>
+            <input type="text" className="form-control" name="prix" onChange={handleChange} required />
           </div>
           <div className="form-group" style={{ margin: "20px" }}>
             <label>Année:</label>
@@ -72,8 +90,11 @@ const CreateV = () => {
               <option value="maintenance">Maintenance</option>
             </select>
           </div>
-          <button type="submit" style={{ margin: "20px" }} onClick={handleSubmit} className="btn btn-primary">Add Vehicle</button>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Image vehicle:</label>
+            <input type="file" className="form-control" name="file" onChange={(e) => setFile(e.target.files[0])} required />                </div>
         </div>
+        <button type="submit" style={{ margin: "20px" }} onClick={handleSubmit} className="btn btn-primary">Add Vehicle</button>
       </div>
     </div>
   );

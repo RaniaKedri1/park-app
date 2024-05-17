@@ -33,12 +33,12 @@ const Vehicle = () => {
                                     <div className="row" key={vehicle.id} style={{ marginBottom: '50px', marginBottom: '15px' }}>
                                         <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                             <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                                <img src={vehicle.image} className="w-100" alt={vehicle.make} />
-                                                <a href="#!">
+                                                <img src={vehicle.image} className="w-100" width={50} alt={vehicle.make} />
+                                                {/* <a href="#!">
                                                     <div className="hover-overlay">
                                                         <div className="mask" style={{ backgroundColor: "rgba(253, 253, 253, 0.15)" }}></div>
                                                     </div>
-                                                </a>
+                                                </a> */}
                                             </div>
                                         </div>
                                         <div className="col-md-6 col-lg-6 col-xl-6">
@@ -63,17 +63,9 @@ const Vehicle = () => {
                                             <div className="d-flex flex-row align-items-center mb-1">
                                                 <h4 className="mb-1 me-1">{vehicle.prix} DT</h4>
                                             </div>
-                                            <h6 className="text-success">{vehicle.status}</h6>
+                                            <p>Status</p><h6 className="text-success"> {vehicle.status}</h6>
                                             <div className="d-flex flex-column mt-4">
-                                                {/* <button data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-sm" type="button">Details</button> */}
-                                                <button
-                                                    data-mdb-button-init data-mdb-ripple-init
-                                                    className="btn btn-outline-primary btn-sm mt-2"
-                                                    type="button"
-                                                >
-                                                    Add to wishlist
-                                                </button>
-                                                <Link className="btn btn-primary mr-2" style={{ margin: "4px" }} to={`/mission/${vehicle.id}`} >Voir</Link>
+                                                <Link className="btn btn-outline-primary btn-sm mt-2" style={{ margin: "4px" }} to={`/mission/${vehicle.id}`} >Demande</Link>
                                             </div>
                                         </div>
                                     </div>

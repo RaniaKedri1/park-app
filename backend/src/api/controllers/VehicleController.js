@@ -5,7 +5,7 @@ const mission = require('../models/mission');
 //create vehicle function
 exports.createdVehicle = (req, res) => {
     const image = `http://localhost:5000/uploads/${req.file.filename}`;
-    //console.log(req.body);
+    //console.log(req.body); 
     const vehicleObj = {
         make: req.body.make,
         prix: req.body.prix,
@@ -18,7 +18,7 @@ exports.createdVehicle = (req, res) => {
         registrationNumber: req.body.registrationNumber,
         status: req.body.status,
         image,
-    };
+    }; 
 
     const vehicle = new Vehicle(vehicleObj);
     vehicle.save()

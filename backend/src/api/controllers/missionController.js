@@ -42,7 +42,6 @@ const register = async (req, res) => {
     }
 };
 
-
 // @desc    Fetch all missions
 // @route   GET /api/missions
 // @access  Public
