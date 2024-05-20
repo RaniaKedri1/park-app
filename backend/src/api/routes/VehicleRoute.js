@@ -20,7 +20,7 @@ router.get('/', vc.listervehicles);
 // Route to get a vehicle by ID
 router.get('/:id', vc.vehicle);
 // Route to update a vehicle by IDvehicleController
-router.put('/:id', vc.updatedVehicle);
+router.put('/:id', upload.single('file'), vc.updatedVehicle);
 // Route to delete a vehicle by ID
 router.delete('/:id', vc.deletedVehicle);
 

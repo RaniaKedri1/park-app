@@ -1,85 +1,92 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SideBar from '../component/SideBar';
 
-const CreateU = ({ handleAdd }) => {
-  const [firstname, setFirstname] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [address, setAddress] = useState('');
-  const [pays, setPays] = useState('');
-  const [city, setCity] = useState('');
-  const [postalCode, setPostalCode] = useState('');
-  const [profilePic, setProfilePic] = useState('');
+const CreateUser = () => {
+  const [info, setInfo] = useState({});
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newUser = {
-      firstname,
-      lastName,
-      email,
-      password,
-      address,
-      pays,
-      city,
-      postalCode,
-      profilePic
-    };
-    handleAdd(newUser);
-    // Clear the form fields after submission
-    setFirstname('');
-    setLastName('');
-    setEmail('');
-    setPassword('');
-    setAddress('');
-    setPays('');
-    setCity('');
-    setPostalCode('');
-    setProfilePic('');
+
+    try {
+      if (info.password !== info.repeatPassword) {
+        setError('Passwords do not match.');
+        return;
+      }
+      const response = await axios.post('http://localhost:5000/api/user/register', info);
+      // Handle successful register response here, e.g., redirect to login page
+      if (response) {
+        navigate('/uder/userTable');
+      }
+      console.log('Registration successful:', response.data);
+    } catch (error) {
+      // Handle registration error
+      setError(error.response.data.message);
+    }
   };
 
   return (
-    <div className="container mt-5">
-      <h1 style={{ margin: "20" }}>Add User</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>First name:</label>
-          <input type="text" className="form-control" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Last name:</label>
-          <input type="text" className="form-control" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Email:</label>
-          <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Password:</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Address:</label>
-          <input type="text" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Pays:</label>
-          <input type="text" className="form-control" value={pays} onChange={(e) => setPays(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>City:</label>
-          <input type="text" className="form-control" value={city} onChange={(e) => setCity(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Postal Code:</label>
-          <input type="text" className="form-control" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required />
-        </div>
-        <div className="form-group" style={{ margin: "20px" }}>
-          <label>Profile Pic:</label>
-          <input type="text" className="form-control" value={profilePic} onChange={(e) => setProfilePic(e.target.value)} required />
-        </div>
-        <button type="submit" style={{ margin: "20px" }} className="btn btn-primary">Add User</button>
-      </form>
+    <div className="app-container">
+      <SideBar />
+      <div className='products-area-wrapper tableView' style={{ color: "#222", height: "660px" }}>
+        <h1 style={{ margin: "20px" }}>Add User</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Email:</label>
+            <input type="text" className="form-control" name="email" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Password:</label>
+            <input type="password" className="form-control" name="password" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Repeat Password:</label>
+            <input type="password" className="form-control" name="repeatPassword" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>First Name:</label>
+            <input type="text" className="form-control" name="firstname" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Last Name:</label>
+            <input type="text" className="form-control" name="lastName" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Address:</label>
+            <input type="text" className="form-control" name="address" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Tel:</label>
+            <input type="text" className="form-control" name="Tel" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Pays:</label>
+            <input type="text" className="form-control" name="pays" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>City:</label>
+            <input type="text" className="form-control" name="city" onChange={handleChange} required />
+          </div>
+          <div className="form-group" style={{ margin: "20px" }}>
+            <label>Postal Code:</label>
+            <input type="text" className="form-control" name="postalCode" onChange={handleChange} required />
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button type="submit" style={{ margin: "20px" }} className="btn btn-primary">Add User</button>
+        </form>
+      </div>
     </div>
   );
 };
-export default CreateU;
+
+export default CreateUser;

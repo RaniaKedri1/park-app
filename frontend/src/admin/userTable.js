@@ -15,7 +15,7 @@ function Users() {
 
                 const response = await axios.get('http://localhost:5000/api/user')
                 setUsers(response.data)
-                console.log("User : ============>", response.data);
+                console.log("User : ==>", response.data);
 
             } catch (error) {
                 console.log("error :", error);
@@ -25,10 +25,6 @@ function Users() {
 
     }, [])
 
-    const handleEdit = (id) => {
-        // Logic to handle edit action
-        console.log("Edit User with ID:", id);
-    };
     const handleDelete = async (id) => {
         try {
             await axios.delete(`http://localhost:5000/api/user/${id}`);
@@ -55,8 +51,6 @@ function Users() {
                         <button className="mode-switch" title="Switch Theme" style={{ color: "#222" }}>
                         </button>
                         <button className='app-content-headerButton' onClick={handleAdd}>Add User</button>
-
-
                     </div>
                 </div>
                 <div className={`products-area-wrapper ${isGridView ? 'gridView' : 'tableView'}`} style={{ color: "#222", height: "620px" }}>
@@ -91,8 +85,8 @@ function Users() {
                                             <img src={user.profilePic} width={100} />
                                         </td>
                                         <td>
-                                            <button className="btn btn-primary mr-2" onClick={() => handleEdit(user.id)}>Edit</button>
-                                            <button className="btn btn-danger" onClick={() => handleDelete(user.id)}>Delete</button>
+                                            {/* <button className="btn btn-primary mr-2" onClick={() => handleEdit(user.id)}>Edit</button> */}
+                                            <button className="btn btn-danger" onClick={() => handleDelete(user._id)}>Remove account</button>
                                         </td>
                                     </tr>
                                 ))}

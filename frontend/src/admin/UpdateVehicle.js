@@ -9,7 +9,7 @@ const UpdateVehicle = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [updatedVe, setUpdatedVe] = useState({});
-    const [isGridView, setIsGridView] = useState(true);
+    const [file, setFile] = useState({});
 
     useEffect(() => {
         // Fetch the details of the blog post with the specified id and populate the form
@@ -34,7 +34,18 @@ const UpdateVehicle = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:5000/api/vehicle/${id}`, updatedVe);
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('make', updatedVe.make);
+            formData.append('model', updatedVe.model);
+            formData.append('prix', updatedVe.prix);
+            formData.append('year', updatedVe.year);
+            formData.append('mileage', updatedVe.mileage);
+            formData.append('fuelType', updatedVe.fuelType);
+            formData.append('color', updatedVe.color);
+            formData.append('vin', updatedVe.vin);
+            formData.append('registrationNumber', updatedVe.registrationNumber);
+            const response = await axios.put(`http://localhost:5000/api/vehicle/${id}`, formData);
             console.log('blog created:', response.data);
             navigate('/admin/dashboard');
         } catch (error) {
@@ -70,6 +81,10 @@ const UpdateVehicle = () => {
                         <input type="text" className="form-control" name="model" value={updatedVe.model || ""} onChange={handleChange} required />
                     </div>
                     <div className="form-group" style={{ margin: "20px" }}>
+                        <label>Prix:</label>
+                        <input type="text" className="form-control" name="prix" value={updatedVe.prix || ""} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group" style={{ margin: "20px" }}>
                         <label>Année:</label>
                         <input type="number" className="form-control" min="2024" value={updatedVe.year || ""} max="2084" name="year" onChange={handleChange} required />
                     </div>
@@ -102,10 +117,14 @@ const UpdateVehicle = () => {
                             <option value="maintenance">Maintenance</option>
                         </select>
                     </div>
+                    <div className="form-group" style={{ margin: "20px" }}>
+                        <label>Image vehicle:</label>
+                        <input type="file" className="form-control" name="file" onChange={(e) => setFile(e.target.files[0])} required />                </div>
+                    {/* </div> */}
                     <button type="submit" style={{ margin: "20px" }} onClick={handleSubmit} className="btn btn-primary">Update</button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

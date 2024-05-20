@@ -18,7 +18,7 @@ exports.createdVehicle = (req, res) => {
         registrationNumber: req.body.registrationNumber,
         status: req.body.status,
         image,
-    }; 
+    };
 
     const vehicle = new Vehicle(vehicleObj);
     vehicle.save()
@@ -74,23 +74,26 @@ exports.vehicle = (req, res) => {
 // Update a vehicle by ID
 exports.updatedVehicle = (req, res) => {
     const id = req.params.id;
-    const { make, model, year, mileage, fuelType, color, vin, registrationNumber, status } = req.body;
+    const { make, model, year, prix, mileage, fuelType, color, vin, registrationNumber, status } = req.body;
 
     // Check for required fields
     if (!make || !model || !year || !vin || !registrationNumber) {
         return res.status(400).json({ message: 'Make, model, year, VIN, and registration number are required fields' });
     }
+    const image = `http://localhost:5000/uploads/${req.file.filename}`;
 
     Vehicle.findByIdAndUpdate(id, {
         make,
         model,
+        prix,
         year,
         mileage: mileage || 0,
         fuelType,
         color,
         vin,
         registrationNumber,
-        status: status || 'available'
+        status: status || 'available',
+        image 
     }, { new: true })
         .then(updatedVehicle => {
             if (!updatedVehicle) {
